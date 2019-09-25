@@ -5,17 +5,34 @@
   "keywords": [],
   "main": "index.js",
   "dependencies": {
+    "@material-ui/core": "^4.4.3",
+    "@material/react-icon-button": "^0.15.0",
+    "@material/react-material-icon": "^0.15.0",
+    "material-components-web": "^3.2.0",
     "mirador": "3.0.0-alpha.16",
     "react": "16.8.6",
-    "react-dom": "16.8.6"
+    "react-dom": "16.8.6",
+    "react-tooltip": "^3.11.1"
   },
   "devDependencies": {
-    "react-scripts": "1.0.0"
+    "react-scripts": "^3.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

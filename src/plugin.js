@@ -1,13 +1,16 @@
 import React from "react";
+import WebAnnotationsIconButton from "./WebAnnotationsIconButton";
 
-const DemoComponent = props => {
+const WebAnnotationsPlugin = props => {
   console.log(props);
-  return <div id="add-plugin-component-anything">Hello World!</div>;
+  return <div id="WebAnnotationsPlugin">
+    <WebAnnotationsIconButton />
+  </div>;
 };
 
 export default {
-  name: "Demo",
-  target: "WindowTopBarPluginMenu",
+  name: "WebAnnotationsPlugin",
+  target: "WorkspaceControlPanelButtons",
   mode: "add",
-  component: DemoComponent
+  component: WebAnnotationsPlugin
 };
