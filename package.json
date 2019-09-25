@@ -1,7 +1,6 @@
 {
   "name": "rose-demo-front-end",
   "version": "0.2.1",
-  // "homepage": "https://groovinchip.github.io/RoseDemo-FrontEnd/",
   "description": "Front end for the Annotation Interoperability Demo App",
   "keywords": [],
   "main": "index.js",
