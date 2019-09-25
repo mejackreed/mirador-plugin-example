@@ -4,14 +4,14 @@ import WebAnnotationsIconButton from "./WebAnnotationsIconButton";
 const WebAnnotationsPlugin = props => {
   console.log(props);
   return <div id="WebAnnotationsPlugin">
-    <props.TargetComponent {...props} />
+    {/* <props.TargetComponent {...props} /> */}
     <WebAnnotationsIconButton />
   </div>;
 };
 
 export default {
   name: "WebAnnotationsPlugin",
-  target: "WindowSideBarButtons",
-  mode: "wrap",
+  target: "WorkspaceControlPanelButtons",
+  mode: "add",
   component: WebAnnotationsPlugin
 };

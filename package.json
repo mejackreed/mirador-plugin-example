@@ -1,6 +1,7 @@
 {
   "name": "mirador-plugin-example",
   "version": "0.0.12",
+  "homepage": "https://groovinchip.github.io/RoseDemo-FrontEnd/",
   "description": null,
   "keywords": [],
   "main": "index.js",
@@ -15,13 +16,16 @@
     "react-tooltip": "^3.11.1"
   },
   "devDependencies": {
+    "gh-pages": "^2.1.1",
     "react-scripts": "^3.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [
