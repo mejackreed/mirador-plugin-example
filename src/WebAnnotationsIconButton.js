@@ -14,7 +14,7 @@ class WebAnnotationsIconButton extends React.Component {
 
     // Handle button click
     handleClick() {
-        alert('Click!');
+        alert('This button will display Web Annotations soon! It will also be moved to the window sidebar.');
     }
 
     render() {

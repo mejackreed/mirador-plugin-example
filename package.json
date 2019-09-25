@@ -1,8 +1,8 @@
 {
-  "name": "mirador-plugin-example",
-  "version": "0.0.12",
-  "homepage": "https://groovinchip.github.io/RoseDemo-FrontEnd/",
-  "description": null,
+  "name": "rose-demo-front-end",
+  "version": "0.2.1",
+  // "homepage": "https://groovinchip.github.io/RoseDemo-FrontEnd/",
+  "description": "Front end for the Annotation Interoperability Demo App",
   "keywords": [],
   "main": "index.js",
   "dependencies": {
@@ -13,6 +13,7 @@
     "mirador": "3.0.0-alpha.16",
     "react": "16.8.6",
     "react-dom": "16.8.6",
+    "react-router-dom": "^5.1.0",
     "react-tooltip": "^3.11.1"
   },
   "devDependencies": {

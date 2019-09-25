@@ -33,7 +33,8 @@ ReactDOM.render(
           }
         }
      }  
-    }
+    },
+    // selectedTheme: 'dark',
     }} plugins={[plugin]} />,
   document.getElementById("root")
 );
