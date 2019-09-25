@@ -1,15 +1,27 @@
 import React from "react";
-import IconButton from '@material/react-icon-button';
 import MaterialIcon from '@material/react-material-icon';
-import ReactTooltip from 'react-tooltip'
+import './WebAnnotationsIconButtonStyles.css';
 
+//TODO: add network call to WA endpoint
 class WebAnnotationsIconButton extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+
+        // This binding is necessary to make `this` work in the callback
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    // Handle button click
+    handleClick() {
+        alert('Click!');
+    }
+
     render() {
         return (
-            <div>
-                <IconButton>
-                    <MaterialIcon icon='class' />
-                </IconButton>
+            <div id="WebAnnoContainer" class="tooltip">
+                <MaterialIcon icon='class' onClick={this.handleClick} />
+                <span class="tooltiptext">Web Annotations</span>
             </div>
         );
     }
