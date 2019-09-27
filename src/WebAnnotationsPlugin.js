@@ -1,6 +1,5 @@
 import React from "react";
 import WebAnnotationsIconButton from "./WebAnnotationsIconButton";
-import './WebAnnotationsPlugin.css';
 
 const WebAnnotationsPlugin = props => {
   console.log(props);

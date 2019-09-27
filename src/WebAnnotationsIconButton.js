@@ -36,6 +36,7 @@ class WebAnnotationsIconButton extends React.Component {
 
     // Handle button click
     handleClick() {
+        
         alert(JSON.stringify(this.state.responseText))
     }
 
