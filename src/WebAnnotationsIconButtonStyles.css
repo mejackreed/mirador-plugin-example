@@ -2,7 +2,12 @@
     cursor: pointer;   
     color: rgba(0, 0, 0, 0.54);
     font-family: 'Roboto', sans-serif;
-    padding: 10px 0px 8px 10px;
+    padding: 10px 0px 0px 10px;
+    height: 40px;
+}
+
+#WebAnnoContainer.tooltip:hover {
+    background-color: lightgray;
 }
 
 .material-icons {
@@ -11,6 +16,10 @@
 
 .class {
     color: rgba(0, 0, 0, 0.54);
+}
+
+.tooltip {
+    position: relative;
 }
 
 .tooltip .tooltiptext {
@@ -26,12 +35,13 @@
     font-size: 8pt;
 
     /* Position the tooltip */
-    position: relative;
+    /* position: relative; */
     display: inline-block;
-    z-index: 1;
-    top: 100%;
-    left: 50%;
-    margin-left: -26px;
+
+    z-index: 1000;
+    top: 23%;
+    /* left: 50%; */
+    margin-left: -8px;
 }
   
 .tooltip:hover .tooltiptext {
@@ -40,5 +50,5 @@
 
 /* Override Mirador */
 .MuiPaper-root.MuiPaper-elevation0.MuiDrawer-paper.jss366.MuiDrawer-paperAnchorLeft.MuiDrawer-paperAnchorDockedLeft {
-    overflow: hidden;
+    overflow: visible;
 }
