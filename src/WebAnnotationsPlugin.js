@@ -1,17 +1,18 @@
 import React from "react";
-import WebAnnotationsIconButton from "./WebAnnotationsIconButton";
+import WebAnnotationsTranscriptionPopupButton from "./WebAnnotationsIconButton";
 
+// This component represents the entire custom Mirador plugin
 const WebAnnotationsPlugin = props => {
-  console.log(props);
+  // console.log(props);
   return <div id="WebAnnotationsPlugin">
-    <props.TargetComponent {...props.targetProps} />
-    <WebAnnotationsIconButton />
+    {/* <props.TargetComponent {...props.targetProps} /> */}
+    <WebAnnotationsTranscriptionPopupButton />
   </div>;
 };
 
 export default {
   name: "WebAnnotationsPlugin",
-  target: "WindowSideBarButtons",
-  mode: "wrap",
+  target: "WindowTopBarPluginMenu",
+  mode: "add",
   component: WebAnnotationsPlugin
 };

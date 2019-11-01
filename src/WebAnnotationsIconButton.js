@@ -1,19 +1,23 @@
 import React from "react";
-import MaterialIcon from '@material/react-material-icon';
 import './WebAnnotationsIconButtonStyles.css';
+import { isTemplateElement, anyTypeAnnotation } from "@babel/types";
 
-class WebAnnotationsIconButton extends React.Component {
+// This component represents Mirador WindowTopBarPluginMenu isTemplateElement, 
+// which takes the transcription of a canvas contained in a WebAnnotation
+// and displays it in a popup
+class WebAnnotationsTranscriptionPopupButton extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { responseText: Object };
+        this.state = { body: String };
         this.fetchWebAnnotations = this.fetchWebAnnotations.bind(this);
-        this.handleClick = this.handleClick.bind(this);
     }
 
+    // Call fetchWebAnnotations() when rendered
     componentDidMount() {
         this.fetchWebAnnotations();
     }
 
+    // Call for a single Web Annotation and store the transcription in the state
     fetchWebAnnotations() {
         fetch(
             "https://rosetest.library.jhu.edu/rosademo/wa/rose/SeldenSupra57/1r/canvas",
@@ -27,27 +31,19 @@ class WebAnnotationsIconButton extends React.Component {
             if (response.ok) {
                 response.json().then(json => {
                     this.setState({
-                        responseText: json
+                        body: json.body[0].value
                     });
                 });
             }
         });
     }
 
-    // Handle button click
-    handleClick() {
-        
-        alert(JSON.stringify(this.state.responseText))
-    }
-
+    // Return the transcription as viewale HTML
     render() {
         return (
-            <div id="WebAnnoContainer" class="tooltip" onClick={this.handleClick}>
-                <MaterialIcon icon='class' />
-                <span class="tooltiptext">Web Annotations</span>
-            </div>
+            <div Style={"margin-right: 500px;"}  dangerouslySetInnerHTML={{__html: this.state.body}} />
         );
     }
 }
 
-export default WebAnnotationsIconButton;
+export default WebAnnotationsTranscriptionPopupButton;
