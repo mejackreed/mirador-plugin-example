@@ -10,6 +10,9 @@ class WebAnnotationsTranscriptionPopupButton extends React.Component {
     this.fetchAnnotations = this.fetchAnnotations.bind(this);
   }
 
+  // This function loops through all the canvases and contructs and calls a new URL
+  // that points to our Web Annotation endpoint. If there are no 
+  // annotations for a given canvas, we display a message stating so.
   fetchAnnotations(canvases) {
     canvases.forEach(canvas => {
       if (canvas) {
@@ -46,6 +49,7 @@ class WebAnnotationsTranscriptionPopupButton extends React.Component {
     }
   }
 
+  // Turn the Web Annotation's transcription into viewable HTML
   render() {
     return (
         <div Style={"margin-right: 500px;"}  dangerouslySetInnerHTML={{__html: this.state.body}} />
@@ -53,6 +57,7 @@ class WebAnnotationsTranscriptionPopupButton extends React.Component {
   }
 } 
 
+// Hook into Mirador's state to get the canvases
 function mapStateToProps(state, { windowId }) {
   return {
     canvases: mirador.selectors.getSelectedCanvases(state, { windowId: windowId }),
