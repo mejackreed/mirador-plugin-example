@@ -8,7 +8,8 @@ ReactDOM.render(
     id: "mirador", 
     windows: [{ 
         manifestId: 'https://rosetest.library.jhu.edu/rosademo/iiif3/rose/SeldenSupra57/manifest', 
-        canvasId: 'https://rosetest.library.jhu.edu/rosademo/iiif3/rose/SeldenSupra57/1r/canvas' 
+        canvasId: 'https://rosetest.library.jhu.edu/rosademo/iiif3/rose/SeldenSupra57/1r/canvas',
+        thumbnailNavigationPosition: 'far-bottom'
       }] ,
     manifests: {
       'https://rosetest.library.jhu.edu/rosademo/iiif/rose/CoxMacro/manifest': {},
