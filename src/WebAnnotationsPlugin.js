@@ -21,6 +21,7 @@ class WebAnnotationsTranscriptionPopupButton extends React.Component {
           method: 'GET',
         }).then(res => res.json())
           .then((results) => {
+            console.log(results);
             this.setState({
               body: results.body[0].value
             });

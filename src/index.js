@@ -7,8 +7,8 @@ ReactDOM.render(
   <Mirador config={{ 
     id: "mirador", 
     windows: [{ 
-        manifestId: 'https://rosetest.library.jhu.edu/rosademo/iiif/rose/SeldenSupra57/manifest', 
-        canvasId: 'https://rosetest.library.jhu.edu/rosademo/iiif/rose/SeldenSupra57/1r/canvas' 
+        manifestId: 'https://rosetest.library.jhu.edu/rosademo/iiif3/rose/SeldenSupra57/manifest', 
+        canvasId: 'https://rosetest.library.jhu.edu/rosademo/iiif3/rose/SeldenSupra57/1r/canvas' 
       }] ,
     manifests: {
       'https://rosetest.library.jhu.edu/rosademo/iiif/rose/CoxMacro/manifest': {},
