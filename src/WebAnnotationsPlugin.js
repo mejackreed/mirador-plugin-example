@@ -53,7 +53,7 @@ class WebAnnotationsTranscriptionPopupButton extends React.Component {
   // Turn the Web Annotation's transcription into viewable HTML
   render() {
     return (
-        <div Style={"margin-right: 500px;"}  dangerouslySetInnerHTML={{__html: this.state.body}} />
+        <div Style={"margin-right: 116px; margin-left: 16px; height: 100%;"}  dangerouslySetInnerHTML={{__html: this.state.body}} />
     );
   }
 } 
