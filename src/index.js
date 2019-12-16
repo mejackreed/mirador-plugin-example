@@ -2,6 +2,7 @@ import ReactDOM from "react-dom";
 import React from "react";
 import Mirador from "./Mirador";
 import plugin from "./WebAnnotationsPlugin";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <Mirador config={{ 
@@ -10,7 +11,12 @@ ReactDOM.render(
         manifestId: 'https://rosetest.library.jhu.edu/rosademo/iiif3/rose/SeldenSupra57/manifest', 
         canvasId: 'https://rosetest.library.jhu.edu/rosademo/iiif3/rose/SeldenSupra57/1r/canvas',
         thumbnailNavigationPosition: 'far-bottom'
-      }] ,
+      },
+      {
+        manifestId: 'https://rosetest.library.jhu.edu/rosademo/iiif/homer/VA/manifest',
+        thumbnailNavigationPosition: 'far-bottom'
+      }
+    ] ,
     manifests: {
       'https://rosetest.library.jhu.edu/rosademo/iiif/rose/CoxMacro/manifest': {},
       'https://rosetest.library.jhu.edu/rosademo/iiif/rose/Douce195/manifest': {},
