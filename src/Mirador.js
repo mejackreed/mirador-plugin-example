@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import mirador from "mirador";
+import mirador from 'mirador/dist/es/src/index'
 
 class Mirador extends Component {
   componentDidMount() {

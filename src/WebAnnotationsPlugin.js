@@ -1,17 +1,63 @@
-import React from "react";
-import isEqual from 'lodash/isEqual';
-import mirador from 'mirador/dist/es/src/index';
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button';
+import React from 'react'
+import isEqual from 'lodash/isEqual'
+import { getVisibleCanvases } from 'mirador/dist/es/src/state/selectors/canvases'
+import { withStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
+import Dialog from '@material-ui/core/Dialog'
+import MuiDialogTitle from '@material-ui/core/DialogTitle'
+import MuiDialogContent from '@material-ui/core/DialogContent'
+import IconButton from '@material-ui/core/IconButton'
+import CloseIcon from '@material-ui/icons/Close'
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser'
+
+// Define styles for components
+const styles = theme => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(2)
+  },
+  closeButton: {
+    position: 'absolute',
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500]
+  }
+})
+
+// This component represents the title of the Dialog
+// that will show Web Annotation data
+const DialogTitle = withStyles(styles)(props => {
+  const { children, classes, onClose, ...other } = props
+  return (
+    <MuiDialogTitle disableTypography className={classes.root} {...other}>
+      <Typography variant="h6">{children}</Typography>
+      {onClose ? (
+        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </MuiDialogTitle>
+  )
+})
+
+// This component represents the content of the Dialog
+// that will show Web Annotation data
+const DialogContent = withStyles(theme => ({
+  root: {
+    padding: theme.spacing(2)
+  }
+}))(MuiDialogContent)
+
+// --------------------------------------------------------------------------------------------------------------------
 
 // This component represents the entire custom Mirador plugin
-class WebAnnotationsTranscriptionPopupButton extends React.Component {
+class WebAnnotationsPlugin extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { body: '' };
+    this.state = { body: '', open: false };
     this.fetchAnnotations = this.fetchAnnotations.bind(this);
-    // this.show = false;
-    // this.handleClose = this.handleClose.bind(this);
   }
 
   // This function loops through all the canvases and contructs and calls a new URL
@@ -62,12 +108,15 @@ class WebAnnotationsTranscriptionPopupButton extends React.Component {
     });
   }
 
-  //
-  // handleClose () {
-  //   this.setState({
-  //     show: false
-  //   });
-  // }
+  // This function opens the Dialog
+  openDialog () {
+    this.setState({ open: true })
+  }
+
+  // This function closes the Dialog
+  closeDialog () {
+    this.setState({ open: false })
+  }  
 
   componentDidMount() {
     const { canvases } = this.props;
@@ -87,38 +136,31 @@ class WebAnnotationsTranscriptionPopupButton extends React.Component {
   // Turn the Web Annotation's transcription into viewable HTML
   render() {
     return (
-      <div Style={"margin-right: 116px; margin-left: 16px;"}  dangerouslySetInnerHTML={{__html: this.state.body}} />
-        // <>
-        //   <Modal show={this.show} onHide={this.handleClose}>
-        //     <Modal.Header closeButton>
-        //       <Modal.Title>Web Annotations</Modal.Title>
-        //     </Modal.Header>
-        //     <Modal.body>
-        //       {this.state.body}
-        //     </Modal.body>
-        //     <Modal.Footer>
-        //       <Button variant="secondary" onClick={this.handleClose}>
-        //         Close
-        //       </Button>          
-        //     </Modal.Footer>
-        //   </Modal>
-        // </>
-    );
+      <div>
+        <Button onClick={this.openDialog.bind(this)} >View Web Annotations</Button>
+        <Dialog open={this.state.open} onClose={this.closeDialog.bind(this)}>
+          <DialogTitle id="customized-dialog-title" onClose={this.closeDialog.bind(this)}>Web Annotations</DialogTitle>
+          <DialogContent>
+            <Box>{ReactHtmlParser(this.state.body)}</Box>
+          </DialogContent>
+        </Dialog>
+      </div> 
+    )
   }
 } 
 
 // Hook into Mirador's state to get the canvases
 function mapStateToProps(state, { windowId }) {
   return {
-    canvases: mirador.selectors.getVisibleCanvases(state, { windowId: windowId }),
+    canvases: getVisibleCanvases(state, { windowId: windowId }),
     config: state.config,
   };
 };
 
 export default {
-  name: "WebAnnotationsTranscriptionPopupButton",
+  name: "WebAnnotationsPlugin",
   target: "WindowTopBarPluginMenu",
   mode: "add",
-  component: WebAnnotationsTranscriptionPopupButton,
+  component: WebAnnotationsPlugin,
   mapStateToProps: mapStateToProps,
 };
