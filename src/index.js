@@ -12,10 +12,6 @@ ReactDOM.render(
         canvasId: 'https://rosetest.library.jhu.edu/rosademo/iiif3/rose/SeldenSupra57/1r/canvas',
         thumbnailNavigationPosition: 'far-bottom'
       },
-      {
-        manifestId: 'https://rosetest.library.jhu.edu/rosademo/iiif/homer/VA/manifest',
-        thumbnailNavigationPosition: 'far-bottom'
-      }
     ] ,
     manifests: {
       'https://rosetest.library.jhu.edu/rosademo/iiif/rose/CoxMacro/manifest': {},
