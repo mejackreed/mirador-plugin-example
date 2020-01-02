@@ -32,7 +32,7 @@ const DialogTitle = withStyles(styles)(props => {
   const { children, classes, onClose, ...other } = props
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
+      <Typography variant="h2">{children}</Typography>
       {onClose ? (
         <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
           <CloseIcon />
@@ -139,7 +139,7 @@ class WebAnnotationsPlugin extends React.Component {
       <div>
         <Button onClick={this.openDialog.bind(this)} >View Web Annotations</Button>
         <Dialog open={this.state.open} onClose={this.closeDialog.bind(this)}>
-          <DialogTitle id="customized-dialog-title" onClose={this.closeDialog.bind(this)}>Web Annotations</DialogTitle>
+        <DialogTitle id="customized-dialog-title" onClose={this.closeDialog.bind(this)}>Web Annotations</DialogTitle>
           <DialogContent>
             <Box>{ReactHtmlParser(this.state.body)}</Box>
           </DialogContent>
