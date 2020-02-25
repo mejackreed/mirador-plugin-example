@@ -95,6 +95,7 @@ function mapStateToProps(state, props) {
   };
 };
 
+// Add annotations to Mirador state
 const mapDispatchToProps = {
   receiveAnnotation: receiveAnnotation
 }
