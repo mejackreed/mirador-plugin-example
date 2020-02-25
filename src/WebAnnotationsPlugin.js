@@ -3,61 +3,16 @@ import isEqual from 'lodash/isEqual'
 import { getVisibleCanvases } from 'mirador/dist/es/src/state/selectors/canvases'
 import { receiveAnnotation } from 'mirador/dist/es/src/state/actions/annotation'
 import { withStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
-import Dialog from '@material-ui/core/Dialog'
 import MuiDialogTitle from '@material-ui/core/DialogTitle'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
 import Typography from '@material-ui/core/Typography'
-import Box from '@material-ui/core/Box'
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser'
-
-// Define styles for components
-const styles = theme => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(2)
-  },
-  closeButton: {
-    position: 'absolute',
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: theme.palette.grey[500]
-  }
-})
-
-// This component represents the title of the Dialog
-// that will show Web Annotation data
-const DialogTitle = withStyles(styles)(props => {
-  const { children, classes, onClose, ...other } = props
-  return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h2">{children}</Typography>
-      {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </MuiDialogTitle>
-  )
-})
-
-// This component represents the content of the Dialog
-// that will show Web Annotation data
-const DialogContent = withStyles(theme => ({
-  root: {
-    padding: theme.spacing(2)
-  }
-}))(MuiDialogContent)
-
-// --------------------------------------------------------------------------------------------------------------------
 
 // This component represents the entire custom Mirador plugin
 class WebAnnotationsPlugin extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { body: '', open: false };
     this.fetchAnnotations = this.fetchAnnotations.bind(this);
   }
 
@@ -94,36 +49,20 @@ class WebAnnotationsPlugin extends React.Component {
           method: 'GET',
         }).then(res => res.json())
           .then((results) => { 
-            receiveAnnotation(canvas.id, url, results)   
-            console.log(receiveAnnotation(canvas.id, url, results))      
-            if (results.body != undefined) {
-              this.setState({
-                body: results.body[0].value
-              });
-            } else { // Handle case where results has no body      
-              this.setState({
-                body: 'No annotations available'
-              });
+            const AnnoPage = {
+              id: url,
+              type: 'AnnotationPage',
+              items: [
+                results,
+              ],
             }
+            receiveAnnotation(canvas.id, url, AnnoPage) // results should be annotation page
         }, (error) => {
           console.log(error);
-          this.setState({
-            body: 'No annotations available'
-          });
         });
       }
     });
   }
-
-  // This function opens the Dialog
-  openDialog () {
-    this.setState({ open: true })
-  }
-
-  // This function closes the Dialog
-  closeDialog () {
-    this.setState({ open: false })
-  }  
 
   componentDidMount() {
     const { canvases } = this.props;
